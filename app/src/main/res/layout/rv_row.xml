@@ -5,34 +5,65 @@
     android:layout_height="wrap_content">
 
 
-    <ImageView
-        android:id="@+id/imageDeal"
+    <!--<ImageView-->
+        <!--android:id="@+id/imageDeal"-->
+        <!--android:layout_width="@dimen/rvImageDimen"-->
+        <!--android:layout_height="@dimen/rvImageDimen"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="@dimen/half_margin_standard"-->
+        <!--android:layout_marginBottom="@dimen/half_margin_standard"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/tvPrice"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:srcCompat="@mipmap/ic_launcher" />-->
+
+    <FrameLayout
+        android:id="@+id/flRowList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_margin_standard"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageDeal1"
+            android:layout_width="@dimen/rvImageDimen"
+            android:layout_height="@dimen/rvImageDimen"/>
+
+        <ProgressBar
+            android:id="@+id/pbLoadingImage1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/text_margin_standard"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textSize="@dimen/title_large"
-        app:layout_constraintStart_toEndOf="@+id/imageDeal"
-        app:layout_constraintTop_toTopOf="@+id/imageDeal" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/flRowList"
+        app:layout_constraintTop_toTopOf="@+id/flRowList" />
 
     <TextView
         android:id="@+id/tvDescription"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/half_margin_standard"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
@@ -40,12 +71,11 @@
         android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/text_margin_standard"
-        android:layout_marginBottom="@dimen/text_margin_standard"
+        android:layout_marginEnd="24dp"
         android:text="TextView"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_price"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/flRowList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

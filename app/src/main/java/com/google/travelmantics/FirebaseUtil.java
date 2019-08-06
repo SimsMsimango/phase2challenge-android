@@ -50,7 +50,6 @@ class FirebaseUtil {
                 public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                     if (firebaseAuth.getCurrentUser() == null) {
                         FirebaseUtil.signIn();
-                        Toast.makeText(callerActivity.getBaseContext(), "Welcome back", Toast.LENGTH_LONG).show();
                     } else {
                         String userId = firebaseAuth.getUid();
                         checkAdmin(userId);
