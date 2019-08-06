@@ -39,6 +39,7 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
     private EditText txtPrice;
     private Button btnImage;
     private ImageView imageView;
+    private ProgressBar progressBar;
 
     private TravelDeal deal;
 
@@ -74,7 +75,8 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
         txtPrice = findViewById(R.id.txtPrice);
         btnImage = findViewById(R.id.btnImage);
         btnImage.setOnClickListener(this);
-        imageView = findViewById(R.id.image);
+        imageView = findViewById(R.id.productImage);
+        progressBar = findViewById(R.id.pbLoadingImage);
     }
 
     @Override
@@ -211,9 +213,17 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
                     .load(url)
                     .resize(width, width)
                     .centerCrop()
-                    .into(imageView);
+                    .into(imageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            progressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            imageView.setImageResource(R.drawable.ic_launcher_foreground);
+                        }
+                    });
         }
     }
-
-
 }
