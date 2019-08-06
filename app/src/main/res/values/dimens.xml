@@ -7,4 +7,6 @@
     <dimen name="text_price">18sp</dimen>
     <dimen name="rvImageDimen">96dp</dimen>
     <dimen name="half_margin_standard">8dp</dimen>
+    <dimen name="quarter_margin_standard">4dp</dimen>
+    <dimen name="half_quarter_margin_standard">2dp</dimen>
 </resources>
