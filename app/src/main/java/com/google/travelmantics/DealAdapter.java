@@ -74,7 +74,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
     @Override
     public DealViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        View itemView = LayoutInflater.from(context).inflate(R.layout.rv_row, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.row_deal, parent, false);
         return new DealViewHolder(itemView);
     }
 
