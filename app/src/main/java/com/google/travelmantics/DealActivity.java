@@ -1,9 +1,5 @@
 package com.google.travelmantics;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -16,20 +12,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Continuation;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class DealActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String DEAL = "Deal";
-    public static final String TRAVELDEALS = "traveldeals";
+    public static final String TRAVEL_DEALS = "traveldeals";
     public static final int PICTURE_RESULT = 42;
 
     private DatabaseReference mDatabaseReference;
@@ -47,7 +47,6 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deal);
-//        FirebaseUtil.openFbReference(TRAVELDEALS, this);
         mDatabaseReference = FirebaseUtil.mDatabaseReference;
         initializeViews();
 
@@ -144,7 +143,6 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
                                 deal.setImageUrl(url);
                                 deal.setImageName(pictureName);
                                 showImage(url);
-                                saveDeal();
                             }
                         });
 
@@ -204,6 +202,12 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
         txtTitle.setEnabled(isEnabled);
         txtDescription.setEnabled(isEnabled);
         txtPrice.setEnabled(isEnabled);
+        btnImage.setClickable(isEnabled);
+        if (!isEnabled) {
+            btnImage.setBackgroundColor(getResources().getColor(R.color.colorGray));
+        } else {
+            btnImage.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        }
     }
 
     private void showImage(String url) {

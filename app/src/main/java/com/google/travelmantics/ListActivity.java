@@ -16,7 +16,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import static com.google.travelmantics.DealActivity.TRAVELDEALS;
+import static com.google.travelmantics.DealActivity.TRAVEL_DEALS;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -71,7 +71,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        FirebaseUtil.openFbReference(TRAVELDEALS, this);
+        FirebaseUtil.openFbReference(TRAVEL_DEALS, this);
 
         RecyclerView rvDeals = findViewById(R.id.rvDeals);
         final DealAdapter adapter = new DealAdapter(this);

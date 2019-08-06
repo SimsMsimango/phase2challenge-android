@@ -2,7 +2,6 @@ package com.google.travelmantics;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static com.google.travelmantics.DealActivity.DEAL;
-import static com.google.travelmantics.DealActivity.TRAVELDEALS;
+import static com.google.travelmantics.DealActivity.TRAVEL_DEALS;
 
 public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder> {
 
@@ -33,7 +32,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
     private ImageView imageView;
 
     public DealAdapter(ListActivity listActivity) {
-        FirebaseUtil.openFbReference(TRAVELDEALS, listActivity);
+        FirebaseUtil.openFbReference(TRAVEL_DEALS, listActivity);
         mDatabaseReference = FirebaseUtil.mDatabaseReference;
         deals = FirebaseUtil.mDeals;
         mChildEventListener = new ChildEventListener() {
