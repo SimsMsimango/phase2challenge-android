@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -91,6 +93,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
         TextView tvTitle;
         TextView tvDescrition;
         TextView tvPrice;
+        ProgressBar progressBar;
 
         DealViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,7 +101,8 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
             tvDescrition = itemView.findViewById(R.id.tvDescription);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             itemView.setOnClickListener(this);
-            imageView = itemView.findViewById(R.id.imageDeal);
+            imageView = itemView.findViewById(R.id.imageDeal1);
+            progressBar = itemView.findViewById(R.id.pbLoadingImage1);
         }
 
         void bind(TravelDeal deal) {
@@ -120,11 +124,25 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
         private void showImage(String url) {
             if (url != null && !url.isEmpty()) {
                 Picasso.with(imageView.getContext())
-                .load(url)
-                .resize(160, 160)
+                        .load(url)
+                        .resize(160, 160)
                         .centerCrop()
-                        .into(imageView);
+                        .into(imageView, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                progressBar.setVisibility(View.GONE);
+                            }
 
+                            @Override
+                            public void onError() {
+                                progressBar.setVisibility(View.GONE);
+                                imageView.setImageResource(R.drawable.ic_no_image);
+                            }
+                        });
+
+            } else {
+                progressBar.setVisibility(View.GONE);
+                imageView.setImageResource(R.drawable.ic_no_image);
             }
         }
     }

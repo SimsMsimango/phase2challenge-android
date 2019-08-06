@@ -54,6 +54,7 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
         TravelDeal deal = (TravelDeal) intent.getSerializableExtra(DEAL);
         if (deal == null) {
             deal = new TravelDeal();
+            progressBar.setVisibility(View.GONE);
         }
         this.deal = deal;
         assignDealValues(deal);
@@ -120,6 +121,7 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
             intent.setType("image/jpeg");
             intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
             startActivityForResult(Intent.createChooser(intent, "Insert Picture"), PICTURE_RESULT);
+            progressBar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -203,11 +205,6 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
         txtDescription.setEnabled(isEnabled);
         txtPrice.setEnabled(isEnabled);
         btnImage.setClickable(isEnabled);
-        if (!isEnabled) {
-            btnImage.setBackgroundColor(getResources().getColor(R.color.colorGray));
-        } else {
-            btnImage.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        }
     }
 
     private void showImage(String url) {
@@ -225,9 +222,12 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
 
                         @Override
                         public void onError() {
-                            imageView.setImageResource(R.drawable.ic_launcher_foreground);
+                            progressBar.setVisibility(View.GONE);
+                            imageView.setImageResource(R.drawable.ic_no_image);
                         }
                     });
+        } else {
+            progressBar.setVisibility(View.GONE);
         }
     }
 }
