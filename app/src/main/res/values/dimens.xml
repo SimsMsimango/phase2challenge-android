@@ -5,4 +5,6 @@
     <dimen name="rv_text_size">20sp</dimen>
     <dimen name="title_large">24sp</dimen>
     <dimen name="text_price">18sp</dimen>
+    <dimen name="rvImageDimen">96dp</dimen>
+    <dimen name="half_margin_standard">8dp</dimen>
 </resources>
