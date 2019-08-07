@@ -1,7 +1,5 @@
 package com.google.travelmantics;
 
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
