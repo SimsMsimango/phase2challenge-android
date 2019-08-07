@@ -121,7 +121,8 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
             intent.setType("image/jpeg");
             intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
             startActivityForResult(Intent.createChooser(intent, "Insert Picture"), PICTURE_RESULT);
-            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
+            imageView.setImageResource(android.R.color.transparent);
         }
     }
 
@@ -129,6 +130,7 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICTURE_RESULT && resultCode == RESULT_OK) {
+            progressBar.setVisibility(View.VISIBLE);
             if (data != null && data.getData() != null && data.getData().getLastPathSegment() != null) {
                 Uri imageUri = data.getData();
                 final StorageReference ref = FirebaseUtil.mStorageReference.child(imageUri.getLastPathSegment());
@@ -223,7 +225,6 @@ public class DealActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onError() {
                             progressBar.setVisibility(View.GONE);
-                            imageView.setImageResource(R.drawable.ic_no_image);
                         }
                     });
         } else {

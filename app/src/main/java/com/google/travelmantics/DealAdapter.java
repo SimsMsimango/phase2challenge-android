@@ -136,13 +136,13 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
                             @Override
                             public void onError() {
                                 progressBar.setVisibility(View.GONE);
-                                imageView.setImageResource(R.drawable.ic_no_image);
+                                imageView.setImageResource(android.R.color.transparent);
                             }
                         });
 
             } else {
                 progressBar.setVisibility(View.GONE);
-                imageView.setImageResource(R.drawable.ic_no_image);
+                imageView.setImageResource(android.R.color.transparent);
             }
         }
     }
